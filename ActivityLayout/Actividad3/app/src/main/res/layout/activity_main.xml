@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.joanmorales.actividad3.MainActivity"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Message"
+        android:id="@+id/message"/>
+    <Spinner
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message"
+        android:id="@+id/spinner1"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/spinner2" ></Spinner>
+    <Spinner
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message"
+        android:id="@+id/spinner2"
+        android:layout_alignParentRight="true"></Spinner>
+    <Button
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner1"
+        android:layout_alignParentLeft="true"
+        android:text="DONE"
+        android:id="@+id/done"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Content Here"
+        android:id="@+id/content"
+        android:layout_below="@+id/done" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/content"
+        android:layout_alignParentLeft="true"
+        android:text="Discard"
+        android:id="@+id/discard"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:layout_alignParentRight="true"
+        android:id="@+id/submit"
+        android:layout_below="@+id/content"/>
+</RelativeLayout>
