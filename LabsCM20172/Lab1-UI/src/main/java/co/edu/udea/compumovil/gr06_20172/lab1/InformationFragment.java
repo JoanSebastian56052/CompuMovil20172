@@ -18,7 +18,7 @@ import android.widget.TextView;
  */
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass.
+ * A simple {@link Fragment} subclass.
  */
 public class InformationFragment extends Fragment {
 
@@ -53,7 +53,7 @@ public class InformationFragment extends Fragment {
         String aux = search.getString(1);
         search = db.rawQuery("select * from "+StatusContract.TABLE_USER+ " where "+StatusContract.Column_User.MAIL+"='"+aux+"'", null);
         search.moveToFirst();
-        Log.d("prueba",search.getString(2));
+        Log.d("prueba",search.getString(1));
         txtValidateR[0].setText("Nombre: "+search.getString(2));
         txtValidateR[1].setText("Apellido: "+search.getString(3));
         txtValidateR[2].setText("E-mail:"+search.getString(1));

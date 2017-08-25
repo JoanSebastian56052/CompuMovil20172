@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dbHelper =new DbHelper(this);//nueva base de datos
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                             // For rest of the options we just show a toast on click
 
                             case R.id.action_exit:
+                                db = dbHelper.getWritableDatabase();
+                                db.execSQL("delete from " + StatusContract.TABLE_LOGIN);
+                                db.close();
                                 Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
                                 Intent newActivity = new Intent(MainActivity.this, Login.class);
                                 startActivity(newActivity);
@@ -100,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_exit) {
+            db = dbHelper.getWritableDatabase();
+            db.execSQL("delete from " + StatusContract.TABLE_LOGIN);
+            db.close();
             Intent newActivity = new Intent(this, Login.class);
             startActivity(newActivity);
             return true;

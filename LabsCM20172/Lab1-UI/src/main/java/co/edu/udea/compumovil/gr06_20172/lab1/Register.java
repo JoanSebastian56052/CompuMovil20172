@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -39,13 +40,12 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     private Bitmap picture;
     private boolean control=false;
     private static final int REQUEST_CODE_GALLERY=1;
-    private static final int REQUEST_CODE_CAMERA=2;
     private ImageView targetImage;
     EditText[] txtValidate = new EditText[9];
     DbHelper dbH;
     SQLiteDatabase db;
     private RadioGroup grupo;
-    private static String rbutton="";
+    RadioButton rbChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {//graba los datos de los usuarios
@@ -57,6 +57,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cities);
         ciudad.setAdapter(adapter);
 
+        grupo = (RadioGroup) findViewById(R.id.rbRegisterGender);
 
         picture = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_profile);
         txtValidate[0]=(EditText)findViewById(R.id.txtRegisterEmail);
@@ -69,16 +70,9 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         txtValidate[7]=(EditText)findViewById(R.id.txtRegisterAddress);
         txtValidate[8]=(EditText)findViewById(R.id.txtRegisterCity);
 
+        rbChecked = (RadioButton) findViewById(grupo.getCheckedRadioButtonId());
 
 
-        //Revisar esta parte
-        grupo = (RadioGroup) findViewById(R.id.rbRegisterGender);
-        if (grupo.getCheckedRadioButtonId() == R.id.rbRegisterGenderF) {
-            rbutton = "Femenino";
-        }
-        if (grupo.getCheckedRadioButtonId() == R.id.rbRegisterGenderM){
-            rbutton = "Masculino";
-        }
 
 
         dbH = new DbHelper(this);
@@ -146,7 +140,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 values.put(StatusContract.Column_User.PHONE, txtValidate[6].getText().toString());
                 values.put(StatusContract.Column_User.ADDRESS, txtValidate[7].getText().toString());
                 values.put(StatusContract.Column_User.CITY, txtValidate[8].getText().toString());
-                values.put(StatusContract.Column_User.GENDER, rbutton);
+                values.put(StatusContract.Column_User.GENDER, rbChecked.getText().toString());
                 values.put(StatusContract.Column_User.PICTURE, getBitmapAsByteArray(picture));
                 db.insertWithOnConflict(StatusContract.TABLE_USER, null, values, SQLiteDatabase.CONFLICT_IGNORE);
                 db.close();
