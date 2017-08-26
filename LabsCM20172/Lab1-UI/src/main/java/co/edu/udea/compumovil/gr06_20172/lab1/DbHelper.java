@@ -18,11 +18,11 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sqlLogin = String
-                .format("create table %s(%s int primary key, %s text unique)",
-                    StatusContract.TABLE_LOGIN,
-                    StatusContract.Column_Login.ID,
-                    StatusContract.Column_Login.EMAIL);
+        String sqlLogin = String.format(
+                "create table %s(%s int primary key, %s text unique)",
+                StatusContract.TABLE_LOGIN,
+                StatusContract.Column_Login.ID,
+                StatusContract.Column_Login.EMAIL);
         db.execSQL(sqlLogin);
         String sqlUser = String.format(
                 "create table %s(%s int primary key, %s text unique, %s text, %s text, %s text, %s text, %s text, %s text, %s text, %s text, %s blob)",
@@ -44,7 +44,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("drop table if exists " + StatusContract.TABLE_USER);
-        db.execSQL("drop table if exists " + StatusContract.TABLE_LOGIN);
+        db.execSQL("drop table if exists" + StatusContract.TABLE_USER);
+        db.execSQL("drop table if exists" + StatusContract.TABLE_LOGIN);
     }
 }

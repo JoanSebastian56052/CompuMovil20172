@@ -18,7 +18,7 @@ import android.widget.TextView;
  */
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.support.v4.app.Fragment} subclass.
  */
 public class InformationFragment extends Fragment {
 
@@ -49,8 +49,10 @@ public class InformationFragment extends Fragment {
         targetImageR=(ImageView)view.findViewById(R.id.viewProfile);
         db= dbHelper.getWritableDatabase();
         Cursor search = db.rawQuery("select * from " + StatusContract.TABLE_LOGIN, null);
+
         search.moveToFirst();
         String aux = search.getString(1);
+        Log.d("tag",aux);
         search = db.rawQuery("select * from "+StatusContract.TABLE_USER+ " where "+StatusContract.Column_User.MAIL+"='"+aux+"'", null);
         search.moveToFirst();
         Log.d("prueba",search.getString(1));

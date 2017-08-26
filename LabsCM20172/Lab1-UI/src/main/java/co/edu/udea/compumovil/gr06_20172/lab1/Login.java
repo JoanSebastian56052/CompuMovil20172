@@ -35,7 +35,6 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Log.d("Tag", "Entró");
         setContentView(R.layout.activity_login);
         emailView = (AutoCompleteTextView) findViewById(R.id.txtLoginEmail);
         passwordView = (EditText) findViewById(R.id.txtLoginPassword);
@@ -115,6 +114,7 @@ public class Login extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(StatusContract.Column_Login.ID,(1));
         values.put(StatusContract.Column_Login.EMAIL, emailView.getText().toString());
+        Log.d("tag",emailView.getText().toString());
         db.insertWithOnConflict(StatusContract.TABLE_LOGIN, null, values, SQLiteDatabase.CONFLICT_IGNORE);
         db.close();
         Intent newActivity = new Intent(this, MainActivity.class);

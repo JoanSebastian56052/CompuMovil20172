@@ -19,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
     DbHelper dbHelper;
     SQLiteDatabase db;
     Fragment info = new InformationFragment();
-    Fragment edit = new InformationFragment();
+    Fragment edit = new EditFragment();
     FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
+
     //FloatingActionButton fab;
     ///////////////
 
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        InformationFragment fragment = new InformationFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment);
+        fragmentTransaction.commit();
+
         // Set behavior of Navigation drawer
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -71,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentTransaction.commit();
                                 return true;
 
+                            case R.id.edit:
+                                Toast.makeText(getApplicationContext(),"Edit Selected",Toast.LENGTH_SHORT).show();
+                                EditFragment fragment1 = new EditFragment();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction1.replace(R.id.frame,fragment1);
+                                fragmentTransaction1.commit();
+                                return true;
+
                             // For rest of the options we just show a toast on click
 
                             case R.id.action_exit:
@@ -91,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         //manager.replace(R.id.fragment_container, info);
-       //manager.commit();
+        //manager.commit();
 
     }
 

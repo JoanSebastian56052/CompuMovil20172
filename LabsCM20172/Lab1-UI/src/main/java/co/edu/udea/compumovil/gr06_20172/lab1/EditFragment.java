@@ -1,7 +1,7 @@
 package co.edu.udea.compumovil.gr06_20172.lab1;
 
+
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,15 +9,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -27,14 +26,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-
 
 /**
- * Created by Viviana Londoño on 22/08/2017.
+ * Created by Viviana Londoño on 25/08/2017.
  */
-
-public class Register extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+/**
+ * A simple {@link android.support.v4.app.Fragment} subclass.
+ */
+public class EditFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
 
     private TextView txt;
     private Button btn;
@@ -42,35 +41,50 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     private boolean control=false;
     private static final int REQUEST_CODE_GALLERY=1;
     private ImageView targetImage;
-    EditText[] txtValidate = new EditText[9];
-    DbHelper dbH;
-    SQLiteDatabase db;
+
     private RadioGroup grupo;
     String option = "";
     String optionSelect = "";
 
+    private ImageView targetImageR;
+    DbHelper dbH;
+    DbHelper dbHelper;
+    SQLiteDatabase db;
+    EditText[] txtEditR = new EditText[7];
+    View view;
+
+    public EditFragment() {//fragmen creado para visualizar el acerca de de la aplicacion
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {//graba los datos de los usuarios
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        dbHelper =new DbHelper(getActivity().getBaseContext());
+
+        view=inflater.inflate(R.layout.fragment_edit, container, false);
+
         //Se usa autocompletar para hacer uso en la selección de ciudades
-        AutoCompleteTextView ciudad = (AutoCompleteTextView) findViewById(R.id.txtRegisterCity);
+        /**AutoCompleteTextView ciudad = (AutoCompleteTextView) view.findViewById(R.id.txtEditCity);
         String[] cities = getResources().getStringArray(R.array.cities_array);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cities);
         ciudad.setAdapter(adapter);
-        Log.d("tag1","acá en el on create");
+        Log.d("tag1","acá en el on create");*/
 
         picture = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_profile);
-        txtValidate[0]=(EditText)findViewById(R.id.txtRegisterEmail);
-        txtValidate[1]=(EditText)findViewById(R.id.textRegisterPass);
-        txtValidate[2]=(EditText)findViewById(R.id.txtRegisterPassConf);
-        txtValidate[3]=(EditText)findViewById(R.id.txtRegisterName);
-        txtValidate[4]=(EditText)findViewById(R.id.txtRegisterLastName);
-        txtValidate[5]=(EditText)findViewById(R.id.txtRegisterDate);
-        txtValidate[6]=(EditText)findViewById(R.id.txtRegisterPhone);
-        txtValidate[7]=(EditText)findViewById(R.id.txtRegisterAddress);
-        txtValidate[8]=(EditText)findViewById(R.id.txtRegisterCity);
-        grupo = (RadioGroup) findViewById(R.id.rbRegisterGender);
+
+        txtEditR[2]=(EditText)view.findViewById(R.id.txtEditEmail);
+        txtEditR[0]=(EditText)view.findViewById(R.id.txtEditName);
+        txtEditR[1]=(EditText)view.findViewById(R.id.txtEditLasName);
+        //txtEditR[3]=(EditText)view.findViewById(R.id.viewGender);
+        txtEditR[3]=(EditText)view.findViewById(R.id.txtEditDate);
+        txtEditR[4]=(EditText)view.findViewById(R.id.txtEditPhone);
+        txtEditR[5]=(EditText)view.findViewById(R.id.txtEditAddress);
+        txtEditR[6]=(EditText)view.findViewById(R.id.txtEditCity);
+        targetImageR=(ImageView)view.findViewById(R.id.profilePicture);
+
+        grupo = (RadioGroup) view.findViewById(R.id.rbEditGender);
 
         grupo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -83,9 +97,32 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
-        dbH = new DbHelper(this);
-        btn = (Button)findViewById(R.id.btnEnviarRegistro);
+        db= dbHelper.getWritableDatabase();
+        Cursor search = db.rawQuery("select * from " + StatusContract.TABLE_LOGIN, null);
+
+        search.moveToFirst();
+        String aux = search.getString(1);
+        Log.d("tag",aux);
+        search = db.rawQuery("select * from "+StatusContract.TABLE_USER+ " where "+StatusContract.Column_User.MAIL+"='"+aux+"'", null);
+        search.moveToFirst();
+        Log.d("prueba",search.getString(1));
+        txtEditR[0].setText(search.getString(2));
+        txtEditR[1].setText(search.getString(3));
+        txtEditR[2].setText(search.getString(1));
+        //txtEditR[3].setText("Género:"+search.getString(4));
+        txtEditR[3].setText(search.getString(5));
+        txtEditR[4].setText(search.getString(6));
+        txtEditR[5].setText(search.getString(7));
+        txtEditR[6].setText(search.getString(9));
+        byte[] auxx=search.getBlob(5);
+        Bitmap pict= BitmapFactory.decodeByteArray(auxx, 0, (auxx).length);
+        targetImageR.setImageBitmap(pict);
+        db.close();
+
+        //dbH = new DbHelper(this);
+        btn = (Button)view.findViewById(R.id.btnEnviarRegistro);
         btn.setEnabled(false);
+
         TextWatcher btnActivation = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -97,95 +134,48 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(verificarVaciosSinMessage(txtValidate)){btn.setEnabled(true);}
+                if(verificarVaciosSinMessage(txtEditR)){btn.setEnabled(true);}
                 else{btn.setEnabled(false);}
             }
         };
-        for (int n = 0; n < txtValidate.length; n++)
+        for (int n = 0; n < txtEditR.length; n++)
         {
-            txtValidate[n].addTextChangedListener(btnActivation);
+            txtEditR[n].addTextChangedListener(btnActivation);
         }
-        targetImage = (ImageView)findViewById(R.id.profilePicture);
+        targetImage = (ImageView)view.findViewById(R.id.profilePicture);
         targetImage.setImageBitmap(picture);
-    }
 
-    @Override
-    public void finish() {//terminar la operación activity validando los dos campos usuario y password
-        Intent data = new Intent();
-        if(control) {
-            data.putExtra("email", txtValidate[0].getText().toString());
-            data.putExtra("pass", txtValidate[2].getText().toString());
-        } else{
-            data.putExtra("email", ".");
-            data.putExtra("pass", ".");
-        }
-        setResult(RESULT_OK,data);
-        super.finish();
+        return view;
     }
 
     public void Validar(View v){
         View focusView=null;
-        if (!verificarVacios(txtValidate)){
-        }else if(!txtValidate[0].getText().toString().contains("@")){
-            txtValidate[0].setError(getString(R.string.invalid_mail));
-            focusView = txtValidate[0];
-        }else{
-            if (!txtValidate[2].getText().toString().equals(txtValidate[1].getText().toString())){
-                txtValidate[2].setError(getString(R.string.pass_no_equals));
-                focusView = txtValidate[2];
-            }else if(!existEmail(txtValidate[0].getText().toString())){
-                db = dbH.getWritableDatabase();
+        if (!verificarVacios(txtEditR)){
+        }else {
+                //db = dbH.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 Cursor search = db.rawQuery("select count(*) from usuario", null);
                 search.moveToFirst();
                 int aux=Integer.parseInt(search.getString(0));
-                values.put(StatusContract.Column_User.ID,(aux+1));
-                values.put(StatusContract.Column_User.MAIL, txtValidate[0].getText().toString());
-                values.put(StatusContract.Column_User.PASS, txtValidate[1].getText().toString());
-                values.put(StatusContract.Column_User.NAME, txtValidate[3].getText().toString());
-                values.put(StatusContract.Column_User.LASTNAME, txtValidate[4].getText().toString());
-                values.put(StatusContract.Column_User.DATE, txtValidate[5].getText().toString());
-                values.put(StatusContract.Column_User.PHONE, txtValidate[6].getText().toString());
-                values.put(StatusContract.Column_User.ADDRESS, txtValidate[7].getText().toString());
-                values.put(StatusContract.Column_User.CITY, txtValidate[8].getText().toString());
+                //values.put(StatusContract.Column_User.ID,(aux+1));
+                //values.put(StatusContract.Column_User.MAIL, txtEditR[0].getText().toString());
+                //values.put(StatusContract.Column_User.PASS, txtEditR[1].getText().toString());
+                values.put(StatusContract.Column_User.NAME, txtEditR[0].getText().toString());
+                values.put(StatusContract.Column_User.LASTNAME, txtEditR[1].getText().toString());
+                values.put(StatusContract.Column_User.DATE, txtEditR[3].getText().toString());
+                values.put(StatusContract.Column_User.PHONE, txtEditR[4].getText().toString());
+                values.put(StatusContract.Column_User.ADDRESS, txtEditR[5].getText().toString());
+                values.put(StatusContract.Column_User.CITY, txtEditR[6].getText().toString());
                 values.put(StatusContract.Column_User.GENDER, optionSelect);
                 values.put(StatusContract.Column_User.PICTURE, getBitmapAsByteArray(picture));
-                db.insertWithOnConflict(StatusContract.TABLE_USER, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+                db.update(StatusContract.TABLE_USER, values, "_id="+aux, null);
                 db.close();
                 control=true;
-                finish();
+
             }
-            else
-            {
-                txtValidate[0].setError(getString(R.string.user_exists));
-                focusView = txtValidate[0];
-            }
-        }
 
     }
 
-
-    /**
-     * Método para verificar si el email existe
-     * @param sEmail
-     * @return
-     */
-    public boolean existEmail(String sEmail)//verifiacion de nombre de usuario
-    {
-        db = dbH.getWritableDatabase();
-        Cursor nick=db.rawQuery("select * from "+StatusContract.TABLE_USER+" where email='"+sEmail+"'", null);
-        if (nick.moveToFirst()) {
-            db.close();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Método para verificar vacíos
-     * @param txtValidate
-     * @return
-     */
     public boolean verificarVacios(EditText[] txtValidate)//verificacion de campo requerido
     {
         View focus=null;
@@ -229,21 +219,6 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         startActivityForResult(intent, REQUEST_CODE_GALLERY);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && (requestCode==REQUEST_CODE_GALLERY )){
-            try {
-                Uri targetUri = data.getData();
-                picture = redimensionarImagenMaximo(BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri)),350,350);
-                targetImage.setImageBitmap(picture);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
     /**
      * Método para obtener el arreglo de birmap
      * @param bitmap
@@ -273,23 +248,23 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     }
 
     //Este metodo es para el uso del datePicker la vista
-    public void onEditSet(View v){
+    /**public void onEditSet(View v){
 
         DialogFragment datePickerFragment = new DatePickerFragment();
         datePickerFragment.show(getFragmentManager(), "datePicker");
-    }
+    }*/
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         //se usa para implementar el metodo DatePicker
-        EditText fecha  = (EditText)findViewById(R.id.txtRegisterDate);
+        EditText fecha  = (EditText)view.findViewById(R.id.txtEditDate);
         fecha.setText(new StringBuilder().append(year).append("/").append(monthOfYear).append("/").append(dayOfMonth));
     }
 
     private String itemChecked (int id) {
         option = "vacio";
-        RadioButton item1 = (RadioButton) findViewById (R.id.rbRegisterGenderF);
-        RadioButton item2 = (RadioButton) findViewById (R.id.rbRegisterGenderM);
+        RadioButton item1 = (RadioButton) view.findViewById (R.id.rbEditGenderF);
+        RadioButton item2 = (RadioButton) view.findViewById (R.id.rbEditGenderM);
 
         // Compruebo si el id coincide con alguno de los RadioButton
         if (item1.getId() == id){
@@ -300,5 +275,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         }
         return(option);
     }
+
+
 
 }

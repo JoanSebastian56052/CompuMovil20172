@@ -3,25 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    tools:context=".Register"
+    tools:context=".EditFragment"
+    android:gravity="center_vertical"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:baselineAligned="false"
+    android:weightSum="1">
+
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/scrollRegister" >
+        android:id="@+id/scrollEdit" >
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:id="@+id/layoutRegister">
+            android:id="@+id/layoutEdit">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtRegisterEmail"
+                    android:id="@+id/txtEditEmail"
                     android:inputType="textEmailAddress"
                     android:hint="E-mail"
                     android:layout_alignParentTop="true"
@@ -38,21 +37,6 @@
                     android:layout_marginTop="10dp" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textRegisterPass"
-                    android:hint="@string/txtpassword"
-                    android:inputType="textPassword"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp" />
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -61,23 +45,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtRegisterPassConf"
-                    android:inputType="textPassword"
-                    android:hint="@string/confirmarConstraseña"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtRegisterName"
+                    android:id="@+id/txtEditName"
                     android:inputType="text"
                     android:hint="@string/name"
                     android:layout_alignParentTop="true"
@@ -94,7 +62,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtRegisterLastName"
+                    android:id="@+id/txtEditLasName"
                     android:inputType="text"
                     android:hint="@string/lastname"
                     android:layout_alignParentTop="true"
@@ -105,7 +73,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rbRegisterGender"
+                android:id="@+id/rbEditGender"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -113,14 +81,14 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/rbRegisterGenderF"
+                    android:id="@+id/rbEditGenderF"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="@string/femenino"
                     android:checked="false"/>
 
-                <RadioButton android:id="@+id/rbRegisterGenderM"
+                <RadioButton android:id="@+id/rbEditGenderM"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -132,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/txtRegisterDate"
+                    android:id="@+id/txtEditDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -150,7 +118,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtRegisterPhone"
+                    android:id="@+id/txtEditPhone"
                     android:inputType="phone"
                     android:hint="@string/telefono"
                     android:layout_alignParentTop="true"
@@ -165,7 +133,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtRegisterAddress"
+                    android:id="@+id/txtEditAddress"
                     android:inputType="text"
                     android:hint="@string/direccion"
                     android:layout_alignParentTop="true"
@@ -175,7 +143,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <AutoCompleteTextView
-                android:id="@+id/txtRegisterCity"
+                android:id="@+id/txtEditCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/ciudad"
