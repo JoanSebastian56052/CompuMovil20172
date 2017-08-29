@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -30,9 +31,7 @@ import java.io.ByteArrayOutputStream;
 /**
  * Created by Viviana Londoño on 25/08/2017.
  */
-/**
- * A simple {@link android.support.v4.app.Fragment} subclass.
- */
+
 public class EditFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
 
     private TextView txt;
@@ -52,6 +51,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
     SQLiteDatabase db;
     EditText[] txtEditR = new EditText[7];
     View view;
+    ImageButton btnEditGallery;
 
     public EditFragment() {//fragmen creado para visualizar el acerca de de la aplicacion
         // Required empty public constructor
@@ -83,6 +83,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         txtEditR[5]=(EditText)view.findViewById(R.id.txtEditAddress);
         txtEditR[6]=(EditText)view.findViewById(R.id.txtEditCity);
         targetImageR=(ImageView)view.findViewById(R.id.profilePicture);
+        btnEditGallery = (ImageButton)view.findViewById(R.id.btnEditGallery);
 
         grupo = (RadioGroup) view.findViewById(R.id.rbEditGender);
 
@@ -118,6 +119,22 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         Bitmap pict= BitmapFactory.decodeByteArray(auxx, 0, (auxx).length);
         targetImageR.setImageBitmap(pict);
         db.close();
+
+        btnEditGallery.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                ClickGallery1(view);
+            }
+        });
+
+        txtEditR[3].setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                onEditSet1(view);
+            }
+        });
 
         //dbH = new DbHelper(this);
         btn = (Button)view.findViewById(R.id.btnEnviarRegistro);
@@ -213,7 +230,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
      * Método para hacer la llamada externa de la aplicación a la galería
      * @param v
      */
-    public void ClickGallery(View v) {//llamada externa de la aplicacion a galeria
+    public void ClickGallery1(View v) {//llamada externa de la aplicacion a galeria
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_CODE_GALLERY);
@@ -248,17 +265,16 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
     }
 
     //Este metodo es para el uso del datePicker la vista
-    /**public void onEditSet(View v){
-
-        DialogFragment datePickerFragment = new DatePickerFragment();
-        datePickerFragment.show(getFragmentManager(), "datePicker");
-    }*/
+    public void onEditSet1(View v){
+        android.app.DialogFragment datePickerFragment = new DatePickerFragment();
+        datePickerFragment.show(getActivity().getFragmentManager(), "datePicker");
+    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         //se usa para implementar el metodo DatePicker
         EditText fecha  = (EditText)view.findViewById(R.id.txtEditDate);
-        fecha.setText(new StringBuilder().append(year).append("/").append(monthOfYear).append("/").append(dayOfMonth));
+        fecha.setText(year+"/"+monthOfYear+"/"+dayOfMonth);
     }
 
     private String itemChecked (int id) {
@@ -275,7 +291,5 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         }
         return(option);
     }
-
-
 
 }

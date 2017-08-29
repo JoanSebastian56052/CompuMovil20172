@@ -107,7 +107,11 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         }
         targetImage = (ImageView)findViewById(R.id.profilePicture);
         targetImage.setImageBitmap(picture);
+
+
     }
+
+
 
     @Override
     public void finish() {//terminar la operación activity validando los dos campos usuario y password
@@ -245,7 +249,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
 
     /**
-     * Método para obtener el arreglo de birmap
+     * Método para obtener el arreglo de bitmap
      * @param bitmap
      * @return
      */
@@ -274,7 +278,6 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
     //Este metodo es para el uso del datePicker la vista
     public void onEditSet(View v){
-
         DialogFragment datePickerFragment = new DatePickerFragment();
         datePickerFragment.show(getFragmentManager(), "datePicker");
     }

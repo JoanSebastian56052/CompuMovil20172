@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:onClick="onEditSet"
+                    android:onClick="onEditSet1"
                     android:hint="@string/fechaNacimiento"
                     android:imeOptions="actionNext">
 
@@ -162,8 +162,8 @@
                 <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/btnGallery"
-                    android:onClick="ClickGallery"
+                    android:id="@+id/btnEditGallery"
+                    android:onClick="ClickGallery1"
                     android:src="@android:drawable/ic_menu_gallery"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="40dp"
@@ -171,7 +171,7 @@
 
 
                 <ImageView
-                    android:layout_toRightOf="@id/btnGallery"
+                    android:layout_toRightOf="@id/btnEditGallery"
                     android:layout_width="fill_parent"
                     android:layout_height="150dp"
                     android:id="@+id/profilePicture"
