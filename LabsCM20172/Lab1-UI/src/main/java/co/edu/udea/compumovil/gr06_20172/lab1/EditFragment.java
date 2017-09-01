@@ -115,18 +115,10 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         txtEditR[4].setText(search.getString(6));
         txtEditR[5].setText(search.getString(7));
         txtEditR[6].setText(search.getString(9));
-        byte[] auxx=search.getBlob(5);
+        byte[] auxx=search.getBlob(10);
         Bitmap pict= BitmapFactory.decodeByteArray(auxx, 0, (auxx).length);
         targetImageR.setImageBitmap(pict);
         db.close();
-
-        btnEditGallery.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v){
-                ClickGallery1(view);
-            }
-        });
 
         txtEditR[3].setOnClickListener(new View.OnClickListener(){
 
@@ -137,7 +129,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         });
 
         //dbH = new DbHelper(this);
-        btn = (Button)view.findViewById(R.id.btnEnviarRegistro);
+        btn = (Button)view.findViewById(R.id.btnEditarRegistro);
         btn.setEnabled(false);
 
         TextWatcher btnActivation = new TextWatcher() {
@@ -165,7 +157,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         return view;
     }
 
-    public void Validar(View v){
+    public void ValidarEdit(View v){
         View focusView=null;
         if (!verificarVacios(txtEditR)){
         }else {
@@ -230,7 +222,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
      * Método para hacer la llamada externa de la aplicación a la galería
      * @param v
      */
-    public void ClickGallery1(View v) {//llamada externa de la aplicacion a galeria
+    public void ClickGalleryEdit(View v) {//llamada externa de la aplicacion a galeria
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_CODE_GALLERY);

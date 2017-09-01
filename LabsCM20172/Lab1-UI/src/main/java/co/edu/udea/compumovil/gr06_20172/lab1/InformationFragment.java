@@ -64,7 +64,7 @@ public class InformationFragment extends Fragment {
         txtValidateR[5].setText("Teléfono:"+search.getString(6));
         txtValidateR[6].setText("Dirección:"+search.getString(7));
         txtValidateR[7].setText("Ciudad:"+search.getString(9));
-        byte[] auxx=search.getBlob(5);
+        byte[] auxx=search.getBlob(10);
         Bitmap pict= BitmapFactory.decodeByteArray(auxx, 0, (auxx).length);
         targetImageR.setImageBitmap(pict);
         db.close();

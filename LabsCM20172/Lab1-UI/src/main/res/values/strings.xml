@@ -29,6 +29,15 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="nombreApartamento">Nombre</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="area">Area</string>
+    <string name="valor">Valor</string>
+    <string name="agregar">Agregar</string>
+    <string name="tipo">Tipo</string>
+    <string name="apart">Apartamentos</string>
+    <string name="about">Acerca de ...</string>
+
     <string-array name="cities_array">
         <item>Leticia</item>
         <item>Medellin</item>

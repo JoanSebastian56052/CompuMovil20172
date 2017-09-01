@@ -11,6 +11,7 @@ public class StatusContract {
     public static final int DB_VERSION = 1;
     public static final String TABLE_USER= "usuario";
     public static final String TABLE_LOGIN="logeado";
+    public static final String TABLE_APARTMENT="apartamento";
 
     public class Column_Login {
         public static final String ID = BaseColumns._ID;
@@ -29,5 +30,14 @@ public class StatusContract {
         public static final String PHONE = "phone";
         public static final String PICTURE = "picture";
     }
-
+    public class Column_Apartment {
+        public static final String ID = BaseColumns._ID;
+        public static final String NAME = "name";
+        public static final String TYPE = "type";
+        public static final String VALUE = "value";
+        public static final String AREA = "area";
+        public static final String ADDRESS = "address";
+        public static final String DESCRYPTION = "descryption";
+        public static final String PICTURE = "picture";
+    }
 }

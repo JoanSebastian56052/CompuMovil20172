@@ -3,6 +3,7 @@ package co.edu.udea.compumovil.gr06_20172.lab1;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
     Fragment info = new InformationFragment();
     Fragment edit = new EditFragment();
+    Fragment apar = new ApartmentFragment();
     FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
+    FloatingActionButton fab;
+    AddApartmentFragment add = new AddApartmentFragment();
 
     //FloatingActionButton fab;
     ///////////////
@@ -69,12 +74,30 @@ public class MainActivity extends AppCompatActivity {
 
 
                             //Replacing the main content with ContentFragment Which is our Inbox View;
+                            case R.id.about:
+                                Toast.makeText(getApplicationContext(),"Apart Selected",Toast.LENGTH_SHORT).show();
+                                AboutFragment fragment3 = new AboutFragment();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction3.replace(R.id.frame,fragment3);
+                                fragmentTransaction3.commit();
+                                fab.setVisibility(View.INVISIBLE);
+                                return true;
+                            case R.id.apart:
+                                Toast.makeText(getApplicationContext(),"Apart Selected",Toast.LENGTH_SHORT).show();
+                                ApartmentFragment fragment2 = new ApartmentFragment();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction2.replace(R.id.frame,fragment2);
+                                fragmentTransaction2.commit();
+                                fab.setVisibility(View.VISIBLE);
+                                return true;
+
                             case R.id.info:
                                 Toast.makeText(getApplicationContext(),"Info Selected",Toast.LENGTH_SHORT).show();
                                 InformationFragment fragment = new InformationFragment();
                                 android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame,fragment);
                                 fragmentTransaction.commit();
+                                fab.setVisibility(View.INVISIBLE);
                                 return true;
 
                             case R.id.edit:
@@ -83,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                                 android.support.v4.app.FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction1.replace(R.id.frame,fragment1);
                                 fragmentTransaction1.commit();
+                                fab.setVisibility(View.INVISIBLE);
                                 return true;
 
                             // For rest of the options we just show a toast on click
@@ -106,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 });
         //manager.replace(R.id.fragment_container, info);
         //manager.commit();
-
+        fab.setVisibility(View.INVISIBLE);
     }
 
 
@@ -129,5 +153,20 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    public void AgregarApartamento(View v){
+        manager = getSupportFragmentManager().beginTransaction();
+        add = new AddApartmentFragment();
+        manager.replace(R.id.fragment_container, add);
+        manager.commit();
+        fab.setVisibility(View.INVISIBLE);
+        controlSelect=true;
+    }
+    public void OtroApartamento(View v){
+        add.ValidarPlaces();
+        manager = getSupportFragmentManager().beginTransaction();
+        apar = new ApartmentFragment();
+        manager.replace(R.id.fragment_container, apar);
+        manager.commit();
+        fab.setVisibility(View.VISIBLE);
+    }
 }

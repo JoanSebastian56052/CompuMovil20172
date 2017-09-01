@@ -27,6 +27,15 @@
     <string name="user_exists">User already exists</string>
     <string name="info">Información</string>
 
+    <string name="nombreApartamento">Name</string>
+    <string name="descripcion">Description</string>
+    <string name="area">Area</string>
+    <string name="valor">Value</string>
+    <string name="agregar">Add</string>
+    <string name="tipo">Type</string>
+    <string name="apart">Apartments</string>
+    <string name="about">About  ...</string>
+
     <string-array name="cities_array">
         <item>Leticia</item>
         <item>Medellin</item>
