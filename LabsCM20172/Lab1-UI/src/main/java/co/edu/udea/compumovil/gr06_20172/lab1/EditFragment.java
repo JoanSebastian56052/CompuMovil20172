@@ -46,7 +46,6 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
     String optionSelect = "";
 
     private ImageView targetImageR;
-    DbHelper dbH;
     DbHelper dbHelper;
     SQLiteDatabase db;
     EditText[] txtEditR = new EditText[7];
@@ -77,7 +76,6 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         txtEditR[2]=(EditText)view.findViewById(R.id.txtEditEmail);
         txtEditR[0]=(EditText)view.findViewById(R.id.txtEditName);
         txtEditR[1]=(EditText)view.findViewById(R.id.txtEditLasName);
-        //txtEditR[3]=(EditText)view.findViewById(R.id.viewGender);
         txtEditR[3]=(EditText)view.findViewById(R.id.txtEditDate);
         txtEditR[4]=(EditText)view.findViewById(R.id.txtEditPhone);
         txtEditR[5]=(EditText)view.findViewById(R.id.txtEditAddress);

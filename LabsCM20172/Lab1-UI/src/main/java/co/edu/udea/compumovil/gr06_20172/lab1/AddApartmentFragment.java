@@ -25,14 +25,13 @@ import java.io.FileNotFoundException;
 public class AddApartmentFragment extends Fragment {
     Bitmap pict;
     private static final int REQUEST_CODE_GALLERY=1;
-    private static final int REQUEST_CODE_CAMERA=2;
     private ImageView targetImageR;
     DbHelper dbH;
     SQLiteDatabase db;
     static final int PICK_REQUEST =1337;
     Uri contact = null;
     Button btnR;
-    EditText[] txtValidateR = new EditText[4];
+    EditText[] txtValidateR = new EditText[6];
     View view;
 
     @Override
@@ -80,7 +79,7 @@ public class AddApartmentFragment extends Fragment {
                 contact = data.getData();
             }
         }
-        if (resultCode == getActivity().RESULT_OK && (requestCode==REQUEST_CODE_GALLERY || requestCode==REQUEST_CODE_CAMERA)){
+        if (resultCode == getActivity().RESULT_OK && (requestCode==REQUEST_CODE_GALLERY)){
             try {
                 Uri targetUri = data.getData();
                 pict = redimensionarImagenMaximo(BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(targetUri)),400,350);
@@ -106,7 +105,7 @@ public class AddApartmentFragment extends Fragment {
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
     }
-    public void ValidarPlaces() {//valida los lugares, que ya esten en la BD
+    public void ValidarApartments() {//valida los lugares, que ya esten en la BD
         db = dbH.getWritableDatabase();
         ContentValues values = new ContentValues();
         Cursor search = db.rawQuery("select count(*) from " + StatusContract.TABLE_APARTMENT, null);

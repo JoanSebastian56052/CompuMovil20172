@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     //declaracion de variables globes
     DbHelper dbHelper;
     SQLiteDatabase db;
-    Fragment info = new InformationFragment();
-    Fragment edit = new EditFragment();
     Fragment apar = new ApartmentFragment();
     FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
     FloatingActionButton fab;
@@ -75,13 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
                             //Replacing the main content with ContentFragment Which is our Inbox View;
                             case R.id.about:
-                                Toast.makeText(getApplicationContext(),"Apart Selected",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"About Selected",Toast.LENGTH_SHORT).show();
                                 AboutFragment fragment3 = new AboutFragment();
                                 android.support.v4.app.FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction3.replace(R.id.frame,fragment3);
                                 fragmentTransaction3.commit();
                                 fab.setVisibility(View.INVISIBLE);
                                 return true;
+
                             case R.id.apart:
                                 Toast.makeText(getApplicationContext(),"Apart Selected",Toast.LENGTH_SHORT).show();
                                 ApartmentFragment fragment2 = new ApartmentFragment();
@@ -148,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
             Intent newActivity = new Intent(this, Login.class);
             startActivity(newActivity);
             return true;
-        } else if (id == android.R.id.home) {
-            mDrawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -162,11 +159,14 @@ public class MainActivity extends AppCompatActivity {
         controlSelect=true;
     }
     public void OtroApartamento(View v){
-        add.ValidarPlaces();
+        add.ValidarApartments();
         manager = getSupportFragmentManager().beginTransaction();
         apar = new ApartmentFragment();
         manager.replace(R.id.fragment_container, apar);
         manager.commit();
         fab.setVisibility(View.VISIBLE);
+    }
+    public void GClic(View v){
+        add.ClickGalleryR();
     }
 }
