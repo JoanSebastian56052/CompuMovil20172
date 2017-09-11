@@ -28,15 +28,7 @@
     <string name="info">Información</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="nombreApartamento">Nombre</string>
-    <string name="descripcion">Descripcion</string>
-    <string name="area">Area</string>
-    <string name="valor">Valor</string>
-    <string name="agregar">Agregar</string>
-    <string name="tipo">Tipo</string>
-    <string name="apart">Apartamentos</string>
-    <string name="about">Acerca de ...</string>
+    <string name="mensaje_edicion">Se ha modificado el registro</string>
 
     <string-array name="cities_array">
         <item>Leticia</item>
@@ -73,7 +65,15 @@
         <item>Puerto Carreño</item>
     </string-array>
 
-
+    <string name="notification">Notificaciones</string>
+    <string name="apartments">Apartamentos</string>
+    <string name="about">Acerca de ...</string>
+    <string name="nombreApartamento">Nombre </string>
+    <string name="tipo">Tipo</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="area">Area</string>
+    <string name="valor">Valor</string>
+    <string name="agregar">Agregar</string>
     <item name="visible" type="id" />
     <item name="masked" type="id" />
 

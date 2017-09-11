@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr06_20172.lab1;
 
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;

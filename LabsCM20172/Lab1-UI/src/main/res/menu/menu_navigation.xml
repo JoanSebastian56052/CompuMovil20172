@@ -7,18 +7,23 @@
             android:tint="@color/blanco"
             android:title="@string/info" />
         <item
-            android:id="@+id/apart"
-            android:icon="@drawable/ic_apart"
-            android:tint="@color/blanco"
-            android:title="@string/apart" />
-        <item
             android:id="@+id/edit"
             android:icon="@drawable/ic_edit"
             android:tint="@color/blanco"
             android:title="@string/actualizar" />
         <item
+            android:id="@+id/apart"
+            android:icon="@drawable/ic_home"
+            android:tint="@color/blanco"
+            android:title="@string/apartments"/>
+        <item
+            android:id="@+id/notification"
+            android:icon="@drawable/ic_notifications"
+            android:tint="@color/blanco"
+            android:title="@string/notification"/>
+        <item
             android:id="@+id/about"
-            android:icon="@drawable/ic_about"
+            android:icon="@drawable/ic_info"
             android:tint="@color/blanco"
             android:title="@string/about" />
         <item
@@ -26,6 +31,7 @@
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:tint="@color/blanco"
             android:title="@string/salir" />
+
 
     </group>
 </menu>

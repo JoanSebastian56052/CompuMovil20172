@@ -56,7 +56,7 @@ public class ExtendedSimpleAdapter extends SimpleAdapter {
         if (dataSet == null) {
             return;
         }
-        final SimpleAdapter.ViewBinder binder = super.getViewBinder();
+        final ViewBinder binder = super.getViewBinder();
         final int count = to.length;
         for (int i = 0; i < count; i++) {
             final View v = view.findViewById(to[i]);

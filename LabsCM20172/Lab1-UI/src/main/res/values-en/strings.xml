@@ -25,16 +25,8 @@
     <string name="invalid_mail">Email is not valid</string>
     <string name="pass_no_equals">Passwords do not match</string>
     <string name="user_exists">User already exists</string>
-    <string name="info">Información</string>
-
-    <string name="nombreApartamento">Name</string>
-    <string name="descripcion">Description</string>
-    <string name="area">Area</string>
-    <string name="valor">Value</string>
-    <string name="agregar">Add</string>
-    <string name="tipo">Type</string>
-    <string name="apart">Apartments</string>
-    <string name="about">About  ...</string>
+    <string name="info">Information</string>
+    <string name="mensaje_edicion">Registry has been updated</string>
 
     <string-array name="cities_array">
         <item>Leticia</item>
@@ -70,5 +62,13 @@
         <item>Mitu</item>
         <item>Puerto Carreño</item>
     </string-array>
-
+    <string name="notification">Notifications</string>
+    <string name="apartments">Apartments</string>
+    <string name="about">About ...</string>
+    <string name="nombreApartamento">Name </string>
+    <string name="tipo">Type</string>
+    <string name="descripcion">Descriprion</string>
+    <string name="area">Area</string>
+    <string name="valor">Value</string>
+    <string name="agregar">Add</string>
 </resources>

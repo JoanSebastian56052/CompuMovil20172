@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="Sandra Viviana Londoño\nJoan Sebastian Morales"
+                android:text="Sandra Viviana Londoño \n Joan Sebastian Morales"
                 android:gravity="center"
                 android:textColor="#ffffff" />
 
@@ -94,7 +94,7 @@
                 android:layout_marginTop="40dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="Universidad de Antioquia\nFacultad de Ingenieria\n2017 "
+                android:text="Universidad de Antioquia\nFacultad de Ingenieria\n2017"
                 android:gravity="center"
                 android:textColor="#ffffff" />
 

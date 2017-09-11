@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
     //declaracion de variables globes
     DbHelper dbHelper;
     SQLiteDatabase db;
-    Fragment apar = new ApartmentFragment();
     FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
     FloatingActionButton fab;
     AddApartmentFragment add = new AddApartmentFragment();
+    Fragment apar = new ApartmentFragment();
 
     //FloatingActionButton fab;
     ///////////////
@@ -72,40 +72,43 @@ public class MainActivity extends AppCompatActivity {
 
 
                             //Replacing the main content with ContentFragment Which is our Inbox View;
-                            case R.id.about:
-                                Toast.makeText(getApplicationContext(),"About Selected",Toast.LENGTH_SHORT).show();
-                                AboutFragment fragment3 = new AboutFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction3.replace(R.id.frame,fragment3);
-                                fragmentTransaction3.commit();
-                                fab.setVisibility(View.INVISIBLE);
-                                return true;
-
-                            case R.id.apart:
-                                Toast.makeText(getApplicationContext(),"Apart Selected",Toast.LENGTH_SHORT).show();
-                                ApartmentFragment fragment2 = new ApartmentFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction2.replace(R.id.frame,fragment2);
-                                fragmentTransaction2.commit();
-                                fab.setVisibility(View.VISIBLE);
-                                return true;
-
                             case R.id.info:
-                                Toast.makeText(getApplicationContext(),"Info Selected",Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(),"Info Selected",Toast.LENGTH_SHORT).show();
                                 InformationFragment fragment = new InformationFragment();
                                 android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.frame,fragment);
                                 fragmentTransaction.commit();
-                                fab.setVisibility(View.INVISIBLE);
+                                //fab.setVisibility(View.INVISIBLE);
                                 return true;
-
+                            case R.id.about:
+                                AboutFragment fragment2 = new AboutFragment();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction2.replace(R.id.frame,fragment2);
+                                fragmentTransaction2.commit();
+                                //fab.setVisibility(View.INVISIBLE);
+                                return true;
+                            case R.id.apart:
+                                Toast.makeText(getApplicationContext(),"Apart Selected",Toast.LENGTH_SHORT).show();
+                                ApartmentFragment fragment3 = new ApartmentFragment();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction3.replace(R.id.frame,fragment3);
+                                fragmentTransaction3.commit();
+                                //fab.setVisibility(View.VISIBLE);
+                                return true;
                             case R.id.edit:
-                                Toast.makeText(getApplicationContext(),"Edit Selected",Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(),"Edit Selected",Toast.LENGTH_SHORT).show();
                                 EditFragment fragment1 = new EditFragment();
                                 android.support.v4.app.FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction1.replace(R.id.frame,fragment1);
                                 fragmentTransaction1.commit();
-                                fab.setVisibility(View.INVISIBLE);
+                                //fab.setVisibility(View.INVISIBLE);
+                                return true;
+                            case R.id.notification:
+                                NotificationFragment fragment4 = new NotificationFragment();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction4.replace(R.id.frame,fragment4);
+                                fragmentTransaction4.commit();
+                                //fab.setVisibility(View.INVISIBLE);
                                 return true;
 
                             // For rest of the options we just show a toast on click
@@ -114,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                                 db = dbHelper.getWritableDatabase();
                                 db.execSQL("delete from " + StatusContract.TABLE_LOGIN);
                                 db.close();
-                                Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
                                 Intent newActivity = new Intent(MainActivity.this, Login.class);
                                 startActivity(newActivity);
                                 finish();
@@ -129,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 });
         //manager.replace(R.id.fragment_container, info);
         //manager.commit();
-        fab.setVisibility(View.INVISIBLE);
+
     }
 
 
@@ -147,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
             Intent newActivity = new Intent(this, Login.class);
             startActivity(newActivity);
             return true;
+        } else if (id == android.R.id.home) {
+            mDrawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }

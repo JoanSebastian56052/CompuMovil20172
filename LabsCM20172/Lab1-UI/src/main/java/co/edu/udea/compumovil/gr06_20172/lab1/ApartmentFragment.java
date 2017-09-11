@@ -15,12 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import co.edu.udea.compumovil.gr06_20172.lab1.dummy.DummyContent;
-import co.edu.udea.compumovil.gr06_20172.lab1.dummy.DummyContent.DummyItem;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class ApartmentFragment extends ListFragment {
     DbHelper dbHelper;
@@ -28,10 +25,10 @@ public class ApartmentFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         dbHelper =new DbHelper(getActivity().getBaseContext());
-        ListarSitios();
+        ListarApartamentos();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
-    public void ListarSitios(){//operacion para listar sitios, muestra en el activity los sitios guardados
+    public void ListarApartamentos(){//operacion para listar sitios, muestra en el activity los sitios guardados
         ArrayList<String> apa = new ArrayList(),tipo = new ArrayList(),valor = new ArrayList(),direccion= new ArrayList(),ids = new ArrayList(), area = new ArrayList(), desc = new ArrayList();
         ArrayList picture = new ArrayList();
         boolean control=false;
@@ -50,7 +47,7 @@ public class ApartmentFragment extends ListFragment {
             }while(test.moveToNext());
             control=true;
         } else{
-            Toast.makeText(getActivity().getBaseContext(),"Sin sitios",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getBaseContext(),"Sin apartamentos",Toast.LENGTH_LONG).show();
         }
         db.close();
         if(control) {

@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
@@ -46,11 +47,16 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
     String optionSelect = "";
 
     private ImageView targetImageR;
+    DbHelper dbH;
     DbHelper dbHelper;
     SQLiteDatabase db;
     EditText[] txtEditR = new EditText[7];
     View view;
     ImageButton btnEditGallery;
+    Button btnEditarRegistro;
+
+    Fragment info = new InformationFragment();
+    //FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
 
     public EditFragment() {//fragmen creado para visualizar el acerca de de la aplicacion
         // Required empty public constructor
@@ -76,12 +82,14 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         txtEditR[2]=(EditText)view.findViewById(R.id.txtEditEmail);
         txtEditR[0]=(EditText)view.findViewById(R.id.txtEditName);
         txtEditR[1]=(EditText)view.findViewById(R.id.txtEditLasName);
+        //txtEditR[3]=(EditText)view.findViewById(R.id.viewGender);
         txtEditR[3]=(EditText)view.findViewById(R.id.txtEditDate);
         txtEditR[4]=(EditText)view.findViewById(R.id.txtEditPhone);
         txtEditR[5]=(EditText)view.findViewById(R.id.txtEditAddress);
         txtEditR[6]=(EditText)view.findViewById(R.id.txtEditCity);
         targetImageR=(ImageView)view.findViewById(R.id.profilePicture);
         btnEditGallery = (ImageButton)view.findViewById(R.id.btnEditGallery);
+        btnEditarRegistro = (Button) view.findViewById(R.id.btnEditarRegistro);
 
         grupo = (RadioGroup) view.findViewById(R.id.rbEditGender);
 
@@ -113,16 +121,33 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         txtEditR[4].setText(search.getString(6));
         txtEditR[5].setText(search.getString(7));
         txtEditR[6].setText(search.getString(9));
-        byte[] auxx=search.getBlob(10);
+        byte[] auxx=search.getBlob(5);
         Bitmap pict= BitmapFactory.decodeByteArray(auxx, 0, (auxx).length);
         targetImageR.setImageBitmap(pict);
         db.close();
+
+        btnEditGallery.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                ClickGallery1(view);
+            }
+        });
 
         txtEditR[3].setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v){
                 onEditSet1(view);
+            }
+        });
+
+
+        btnEditarRegistro.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                Actualizar(view);
             }
         });
 
@@ -141,7 +166,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(verificarVaciosSinMessage(txtEditR)){btn.setEnabled(true);}
+                if(verificarVaciosSinMessageE(txtEditR)){btn.setEnabled(true);}
                 else{btn.setEnabled(false);}
             }
         };
@@ -155,11 +180,26 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         return view;
     }
 
-    public void ValidarEdit(View v){
+    /**public void Actualizar(View v){
+
+        int idUsuario = 0;
+        SQLiteDatabase db = getWritableDatabase();
+        if(db!=null){
+            ContentValues values = new ContentValues();
+            values.put("nombre", nombre);
+            values.put("email", email);
+            idUsuario = (int) db.insert(TableUsuarios, null, values);
+        }
+        db.close();
+        return idUsuario;
+
+    }*/
+
+    public void Actualizar(View v){
         View focusView=null;
-        if (!verificarVacios(txtEditR)){
+        if (!verificarVaciosE(txtEditR)){
         }else {
-                //db = dbH.getWritableDatabase();
+                db = dbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 Cursor search = db.rawQuery("select count(*) from usuario", null);
                 search.moveToFirst();
@@ -178,12 +218,34 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
                 db.update(StatusContract.TABLE_USER, values, "_id="+aux, null);
                 db.close();
                 control=true;
+                finish();
 
-            }
+        }
 
     }
 
-    public boolean verificarVacios(EditText[] txtValidate)//verificacion de campo requerido
+    public void finish() {//terminar la operación activity validando los dos campos usuario y password
+        //public static Toast makeText (Context context, CharSequence text, int duration)
+        //public static Toast toast = Toast.makeText(EditFragment.class, "Se ha modificado el registro", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditFragment.this.getActivity(), "@string/mensaje_edicion", Toast.LENGTH_SHORT).show();
+        //btn = (Button)view.findViewById(R.id.btnEditarRegistro);
+        btn.setEnabled(false);
+        txtEditR[0].setEnabled(false);
+        txtEditR[1].setEnabled(false);
+        txtEditR[2].setEnabled(false);
+        txtEditR[3].setEnabled(false);
+        txtEditR[4].setEnabled(false);
+        txtEditR[5].setEnabled(false);
+        txtEditR[6].setEnabled(false);
+        btnEditGallery.setEnabled(false);
+        RadioButton item1 = (RadioButton) view.findViewById (R.id.rbEditGenderF);
+        RadioButton item2 = (RadioButton) view.findViewById (R.id.rbEditGenderM);
+        grupo.setEnabled(false);
+        item1.setEnabled(false);
+        item2.setEnabled(false);
+    }
+
+    public boolean verificarVaciosE(EditText[] txtValidate)//verificacion de campo requerido
     {
         View focus=null;
         for(int i=0; i<txtValidate.length;i++)
@@ -203,7 +265,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
      * @param txtValidate
      * @return
      */
-    public boolean verificarVaciosSinMessage(EditText[] txtValidate)
+    public boolean verificarVaciosSinMessageE(EditText[] txtValidate)
     {
         View focus=null;
         for(int i=0; i<txtValidate.length;i++)
@@ -220,7 +282,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
      * Método para hacer la llamada externa de la aplicación a la galería
      * @param v
      */
-    public void ClickGalleryEdit(View v) {//llamada externa de la aplicacion a galeria
+    public void ClickGallery1(View v) {//llamada externa de la aplicacion a galeria
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_CODE_GALLERY);
@@ -281,5 +343,7 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
         }
         return(option);
     }
+
+
 
 }

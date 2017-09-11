@@ -6,8 +6,12 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * Created by dfrancisco.hernandez on 16/08/16.
+ */
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     //se crea la clase DatePicker para hacer uso de la fecha con una de las clases que android utiliza.
     @Override
@@ -26,6 +30,11 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        ((DatePickerDialog.OnDateSetListener) getActivity()).onDateSet(view,year,monthOfYear,dayOfMonth);
+        Calendar c = Calendar.getInstance();
+        c.set(year, monthOfYear, dayOfMonth);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = sdf.format(c.getTime());
+        //((DatePickerDialog.OnDateSetListener) getActivity()).onDateSet(view,year,monthOfYear,dayOfMonth);
     }
 }
