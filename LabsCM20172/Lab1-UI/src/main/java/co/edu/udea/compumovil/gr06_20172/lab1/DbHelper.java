@@ -39,11 +39,24 @@ public class DbHelper extends SQLiteOpenHelper{
                 StatusContract.Column_User.CITY,
                 StatusContract.Column_User.PICTURE);
         db.execSQL(sqlUser);
+        String sqlApartment = String.format(
+                "create table %s(%s int primary key, %s text unique, %s text, %s text, %s text, %s text, %s text, %s text, %s text, %s text, %s blob)",
+                StatusContract.TABLE_APARTMENT,
+                StatusContract.Column_Apartment.ID,
+                StatusContract.Column_Apartment.NAME,
+                StatusContract.Column_Apartment.TYPE,
+                StatusContract.Column_Apartment.DESCRYPTION,
+                StatusContract.Column_Apartment.VALUE,
+                StatusContract.Column_Apartment.AREA,
+                StatusContract.Column_Apartment.ADDRESS,
+                StatusContract.Column_Apartment.PICTURE);
+        db.execSQL(sqlUser);
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+        db.execSQL("drop table if exists" + StatusContract.TABLE_APARTMENT);
         db.execSQL("drop table if exists" + StatusContract.TABLE_USER);
         db.execSQL("drop table if exists" + StatusContract.TABLE_LOGIN);
     }

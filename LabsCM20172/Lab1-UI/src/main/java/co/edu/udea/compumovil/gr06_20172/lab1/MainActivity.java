@@ -20,11 +20,8 @@ public class MainActivity extends AppCompatActivity {
     //declaracion de variables globes
     DbHelper dbHelper;
     SQLiteDatabase db;
-    FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
     FloatingActionButton fab;
     AddApartmentFragment add = new AddApartmentFragment();
-    Fragment apar = new ApartmentFragment();
-
     //FloatingActionButton fab;
     ///////////////
 
@@ -72,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                             //Replacing the main content with ContentFragment Which is our Inbox View;
+                            case R.id.addApart:
+                                AddApartmentFragment fragment5 = new AddApartmentFragment();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction5.replace(R.id.frame,fragment5);
+                                fragmentTransaction5.commit();
                             case R.id.info:
                                 //Toast.makeText(getApplicationContext(),"Info Selected",Toast.LENGTH_SHORT).show();
                                 InformationFragment fragment = new InformationFragment();
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
                             case R.id.apart:
-                                Toast.makeText(getApplicationContext(),"Apart Selected",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Apartment list",Toast.LENGTH_SHORT).show();
                                 ApartmentFragment fragment3 = new ApartmentFragment();
                                 android.support.v4.app.FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction3.replace(R.id.frame,fragment3);
@@ -156,21 +158,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void AgregarApartamento(View v){
-        manager = getSupportFragmentManager().beginTransaction();
-        add = new AddApartmentFragment();
+        android.support.v4.app.FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
         manager.replace(R.id.fragment_container, add);
         manager.commit();
-        fab.setVisibility(View.INVISIBLE);
+        //fab.setVisibility(View.INVISIBLE);
         controlSelect=true;
     }
     public void OtroApartamento(View v){
         add.ValidarApartments();
-        manager = getSupportFragmentManager().beginTransaction();
-        apar = new ApartmentFragment();
+        ApartmentFragment apar = new ApartmentFragment();
+        android.support.v4.app.FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
         manager.replace(R.id.fragment_container, apar);
         manager.commit();
-        fab.setVisibility(View.VISIBLE);
+        //fab.setVisibility(View.VISIBLE);
     }
+
     public void GClic(View v){
         add.ClickGalleryR();
     }

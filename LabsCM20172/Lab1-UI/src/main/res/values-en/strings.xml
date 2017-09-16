@@ -71,4 +71,5 @@
     <string name="area">Area</string>
     <string name="valor">Value</string>
     <string name="agregar">Add</string>
+    <string name="view">View in map</string>
 </resources>

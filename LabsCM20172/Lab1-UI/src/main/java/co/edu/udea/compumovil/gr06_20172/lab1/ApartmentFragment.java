@@ -1,15 +1,11 @@
 package co.edu.udea.compumovil.gr06_20172.lab1;
 
-import android.content.Context;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +25,13 @@ public class ApartmentFragment extends ListFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
     public void ListarApartamentos(){//operacion para listar sitios, muestra en el activity los sitios guardados
-        ArrayList<String> apa = new ArrayList(),tipo = new ArrayList(),valor = new ArrayList(),direccion= new ArrayList(),ids = new ArrayList(), area = new ArrayList(), desc = new ArrayList();
+        ArrayList<String> name = new ArrayList();
+        ArrayList<String> tipo = new ArrayList();
+        ArrayList<String> valor = new ArrayList();
+        ArrayList<String> direccion= new ArrayList();
+        ArrayList<String> ids = new ArrayList();
+        ArrayList<String> area = new ArrayList();
+        ArrayList<String> desc = new ArrayList();
         ArrayList picture = new ArrayList();
         boolean control=false;
         db= dbHelper.getReadableDatabase();
@@ -38,7 +40,7 @@ public class ApartmentFragment extends ListFragment {
             do{
                 ids.add(test.getString(0));
                 direccion.add(test.getString(1));
-                apa.add(test.getString(2));
+                name.add(test.getString(2));
                 tipo.add(test.getString(3));
                 valor.add(test.getString(4));
                 area.add(test.getString(5));
@@ -47,14 +49,14 @@ public class ApartmentFragment extends ListFragment {
             }while(test.moveToNext());
             control=true;
         } else{
-            Toast.makeText(getActivity().getBaseContext(),"Sin apartamentos",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getBaseContext(),"Sin apartamentos/Without Apartments",Toast.LENGTH_LONG).show();
         }
         db.close();
         if(control) {
             ArrayList aList=new ArrayList();
             for (int i = 0; i < ids.size(); i++) {
                 HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("lug", "Nombre: " + apa.get(i));
+                hm.put("name", "Nombre: " + name.get(i));
                 hm.put("tipo", "Tipo: " + tipo.get(i));
                 hm.put("desc", "Descripción : " + desc.get(i));
                 hm.put("area", "Area : " + area.get(i));
@@ -64,10 +66,12 @@ public class ApartmentFragment extends ListFragment {
             }
             String from[];
             int to[];
-            from = new String[]{"apa","tipo", "desc", "area", "valor", "picture"};
-            to = new int[]{R.id.NombreApartamento, R.id.desc, R.id.area, R.id.valor, R.id.picture};
+            from = new String[]{"name","tipo", "desc", "area", "valor", "picture"};
+            to = new int[]{R.id.napa, R.id.desc, R.id.area, R.id.valor, R.id.picture};
             ExtendedSimpleAdapter adapter = new ExtendedSimpleAdapter(getActivity().getBaseContext(), aList, R.layout.fragment_apartment_list, from, to);
             setListAdapter(adapter);
         }
     }
 }
+
+

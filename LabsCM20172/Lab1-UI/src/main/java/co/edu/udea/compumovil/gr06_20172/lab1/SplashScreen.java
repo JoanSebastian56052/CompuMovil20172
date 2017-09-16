@@ -44,7 +44,7 @@ public class SplashScreen extends Activity{
     }
 
     private void doWork() {
-        for (int progress=0; progress<100; progress+=10) {
+        for (int progress=0; progress<100; progress+=25) {
             try {
                 Thread.sleep(1000);
                 mProgress.setProgress(progress);

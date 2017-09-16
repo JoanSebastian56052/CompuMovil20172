@@ -141,3 +141,5 @@ public class AddApartmentFragment extends Fragment {
         return Bitmap.createBitmap(mBitmap, 0, 0, width, height, matrix, false);
     }
 }
+
+
