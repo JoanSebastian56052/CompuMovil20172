@@ -30,5 +30,14 @@ public class StatusContract {
         public static final String PHONE = "phone";
         public static final String PICTURE = "picture";
     }
-
+    public class Column_Apartment {
+        public static final String ID = BaseColumns._ID;
+        public static final String NAME = "name";
+        public static final String TYPE = "type";
+        public static final String DESCRIPTION = "description";
+        public static final String AREA = "area";
+        public static final String VALUE = "value";
+        public static final String ADDRESS = "address";
+        public static final String PICTURE = "picture";
+    }
 }

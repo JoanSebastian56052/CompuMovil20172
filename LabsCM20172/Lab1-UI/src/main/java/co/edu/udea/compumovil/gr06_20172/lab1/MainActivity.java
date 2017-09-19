@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
     FloatingActionButton fab;
     AddApartmentFragment add = new AddApartmentFragment();
-    //FloatingActionButton fab;
+    FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
     ///////////////
-
+    Fragment apart = new ApartmentFragment();
     private boolean controlSelect=false;
     private DrawerLayout mDrawerLayout;
 
@@ -157,5 +157,24 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void AgregarApartamento(View v){
+        FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction5.replace(R.id.fragment_container,add);
+        fragmentTransaction5.commit();
+    }
+
+    public void GClic(View v){
+        add.ClickGalleryR();
+    }
+
+    public void otroApartamento(View v){
+        add.ValidarApartamentos();
+        Toast.makeText(getApplicationContext(),"Apartment list",Toast.LENGTH_SHORT).show();
+        ApartmentFragment fragment3 = new ApartmentFragment();
+        FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction3.replace(R.id.fragment_container,fragment3);
+        fragmentTransaction3.commit();
+        //fab.setVisibility(View.VISIBLE);
     }
 }
