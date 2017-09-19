@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         InformationFragment fragment = new InformationFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame,fragment);
+        fragmentTransaction.replace(R.id.fragment_container,fragment);
         fragmentTransaction.commit();
 
         // Set behavior of Navigation drawer
@@ -71,44 +71,45 @@ public class MainActivity extends AppCompatActivity {
                             //Replacing the main content with ContentFragment Which is our Inbox View;
                             case R.id.addApart:
                                 AddApartmentFragment fragment5 = new AddApartmentFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction5.replace(R.id.frame,fragment5);
+                                FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction5.replace(R.id.fragment_container,fragment5);
                                 fragmentTransaction5.commit();
+                                return true;
                             case R.id.info:
                                 //Toast.makeText(getApplicationContext(),"Info Selected",Toast.LENGTH_SHORT).show();
                                 InformationFragment fragment = new InformationFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.frame,fragment);
+                                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.fragment_container,fragment);
                                 fragmentTransaction.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
                             case R.id.about:
                                 AboutFragment fragment2 = new AboutFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction2.replace(R.id.frame,fragment2);
+                                FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction2.replace(R.id.fragment_container,fragment2);
                                 fragmentTransaction2.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
                             case R.id.apart:
                                 Toast.makeText(getApplicationContext(),"Apartment list",Toast.LENGTH_SHORT).show();
                                 ApartmentFragment fragment3 = new ApartmentFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction3.replace(R.id.frame,fragment3);
+                                FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction3.replace(R.id.fragment_container,fragment3);
                                 fragmentTransaction3.commit();
                                 //fab.setVisibility(View.VISIBLE);
                                 return true;
                             case R.id.edit:
                                 //Toast.makeText(getApplicationContext(),"Edit Selected",Toast.LENGTH_SHORT).show();
                                 EditFragment fragment1 = new EditFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction1.replace(R.id.frame,fragment1);
+                                FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction1.replace(R.id.fragment_container,fragment1);
                                 fragmentTransaction1.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
                             case R.id.notification:
                                 NotificationFragment fragment4 = new NotificationFragment();
-                                android.support.v4.app.FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction4.replace(R.id.frame,fragment4);
+                                FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction4.replace(R.id.fragment_container,fragment4);
                                 fragmentTransaction4.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
@@ -156,24 +157,5 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
-    }
-    public void AgregarApartamento(View v){
-        android.support.v4.app.FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
-        manager.replace(R.id.fragment_container, add);
-        manager.commit();
-        //fab.setVisibility(View.INVISIBLE);
-        controlSelect=true;
-    }
-    public void OtroApartamento(View v){
-        add.ValidarApartments();
-        ApartmentFragment apar = new ApartmentFragment();
-        android.support.v4.app.FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
-        manager.replace(R.id.fragment_container, apar);
-        manager.commit();
-        //fab.setVisibility(View.VISIBLE);
-    }
-
-    public void GClic(View v){
-        add.ClickGalleryR();
     }
 }

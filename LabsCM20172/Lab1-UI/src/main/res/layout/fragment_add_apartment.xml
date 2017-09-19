@@ -116,8 +116,7 @@
                 <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/btnApartGallery"
-                    android:onClick="GClic"/>
+                    android:id="@+id/btnApartGallery"/>
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="150dp"
@@ -130,7 +129,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/agregar"
                 android:id="@+id/buttonApartamento"
-                android:onClick="OtroApartamento"
                 android:textColor="#fcfafa"
                 android:textStyle="bold"
                 android:paddingLeft="16dp"
