@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 
 /**
  * Created by Viviana Londoño on 25/08/2017.
@@ -318,8 +319,25 @@ public class EditFragment extends Fragment implements DatePickerDialog.OnDateSet
 
     //Este metodo es para el uso del datePicker la vista
     public void onEditSet1(View v){
-        android.app.DialogFragment datePickerFragment = new DatePickerFragment();
-        datePickerFragment.show(getActivity().getFragmentManager(), "datePicker");
+        final Calendar calendario = Calendar.getInstance();
+        int yy = calendario.get(Calendar.YEAR);
+        int mm = calendario.get(Calendar.MONTH);
+        int dd = calendario.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                EditText textfecha  = (EditText)view.findViewById(R.id.txtEditDate);
+                String fecha = String.valueOf(year) +"/"+String.valueOf(monthOfYear+1)
+                        +"/"+String.valueOf(dayOfMonth);
+                Log.d("tag1",fecha);
+                txtEditR[3].setText(fecha);
+
+            }
+        }, yy, mm, dd);
+
+        datePicker.show();
     }
 
     @Override
