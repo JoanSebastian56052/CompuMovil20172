@@ -177,4 +177,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction3.commit();
         //fab.setVisibility(View.VISIBLE);
     }
+    public void viewMaps(View v) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
 }

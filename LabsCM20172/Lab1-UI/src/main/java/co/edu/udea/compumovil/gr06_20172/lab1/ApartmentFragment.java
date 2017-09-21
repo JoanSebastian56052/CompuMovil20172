@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr06_20172.lab1;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import java.util.HashMap;
  */
 public class ApartmentFragment extends ListFragment {
     DbHelper dbHelper;
+    private static final int REQUEST_CODE=1;
     SQLiteDatabase db;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -71,4 +74,5 @@ public class ApartmentFragment extends ListFragment {
             setListAdapter(adapter);
         }
     }
+
 }
