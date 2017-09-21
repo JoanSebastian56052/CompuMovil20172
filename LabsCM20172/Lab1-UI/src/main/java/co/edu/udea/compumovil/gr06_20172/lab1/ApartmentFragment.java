@@ -25,6 +25,7 @@ public class ApartmentFragment extends ListFragment {
     DbHelper dbHelper;
     private static final int REQUEST_CODE=1;
     SQLiteDatabase db;
+    Button mapa;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         dbHelper =new DbHelper(getActivity().getBaseContext());
@@ -44,8 +45,8 @@ public class ApartmentFragment extends ListFragment {
                 type.add(test.getString(2));
                 desc.add(test.getString(3));
                 area.add(test.getString(4));
-                address.add(test.getString(6));
-                value.add(test.getString(5));
+                address.add(test.getString(5));
+                value.add(test.getString(6));
                 picture.add(test.getBlob(7));
             }while(test.moveToNext());
             control=true;
@@ -57,12 +58,12 @@ public class ApartmentFragment extends ListFragment {
             ArrayList aList=new ArrayList();
             for (int i = 0; i < ids.size(); i++) {
                 HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("name", "Lugar: " + name.get(i));
-                hm.put("type","Tipo: "+type.get(i));
-                hm.put("description", "Descripción : " + desc.get(i));
+                hm.put("name", "Site: " + name.get(i));
+                hm.put("type","Type: "+type.get(i));
+                hm.put("description", "Descriptión : " + desc.get(i));
                 hm.put("area", "Area : " + area.get(i));
-                hm.put("address", "Temperatura : " + address.get(i));
-                hm.put("value","Valor: "+value.get(i));
+                hm.put("address", "Address : " + address.get(i));
+                hm.put("value","Value: "+value.get(i));
                 hm.put("picture", BitmapFactory.decodeByteArray((byte[]) picture.get(i), 0, ((byte[]) picture.get(i)).length));
                 aList.add(hm);
             }

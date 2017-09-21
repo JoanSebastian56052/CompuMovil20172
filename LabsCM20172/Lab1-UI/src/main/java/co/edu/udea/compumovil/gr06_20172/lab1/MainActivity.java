@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
     FloatingActionButton fab;
     AddApartmentFragment add = new AddApartmentFragment();
-    FragmentTransaction manager = getSupportFragmentManager().beginTransaction();
+    ApartmentFragment apar = new ApartmentFragment();
     ///////////////
     Fragment apart = new ApartmentFragment();
     private boolean controlSelect=false;
     private DrawerLayout mDrawerLayout;
-
+    Button map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,6 +179,9 @@ public class MainActivity extends AppCompatActivity {
         //fab.setVisibility(View.VISIBLE);
     }
     public void viewMaps(View v) {
+        /*map = (Button) apar.getView().findViewById(R.id.viewMap);
+        String id = ""+map.getId();
+        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();*/
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
