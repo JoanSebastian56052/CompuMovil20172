@@ -70,12 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                             //Replacing the main content with ContentFragment Which is our Inbox View;
-                            case R.id.addApart:
-                                AddApartmentFragment fragment5 = new AddApartmentFragment();
-                                FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction5.replace(R.id.fragment_container,fragment5);
-                                fragmentTransaction5.commit();
-                                return true;
                             case R.id.info:
                                 //Toast.makeText(getApplicationContext(),"Info Selected",Toast.LENGTH_SHORT).show();
                                 InformationFragment fragment = new InformationFragment();

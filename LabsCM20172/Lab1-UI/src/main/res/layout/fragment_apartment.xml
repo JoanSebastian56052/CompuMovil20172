@@ -54,18 +54,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10dp" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/view"
-                android:id="@+id/viewMap"
-                android:textColor="#fcfafa"
-                android:onClick="viewMaps"
-                android:textStyle="bold"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:layout_marginTop="20dp" />
         </LinearLayout>
 
     </LinearLayout>

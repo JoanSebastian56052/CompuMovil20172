@@ -116,9 +116,14 @@
                 <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/btnApartGallery"
-                    android:background="@drawable/ic_photo_library"/>
+                    android:id="@+id/btnAparGallery"
+                    android:onClick="GClic"
+                    android:src="@android:drawable/ic_menu_gallery"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/ic_photo_library" />
                 <ImageView
+                    android:layout_toRightOf="@id/btnAparGallery"
                     android:layout_width="fill_parent"
                     android:layout_height="150dp"
                     android:id="@+id/ImageApartment"
