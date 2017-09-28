@@ -163,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
         add.ClickGalleryR();
     }
 
+    public void search(View v) {
+        apar.searchApartments();
+    }
+
     public void otroApartamento(View v){
         add.ValidarApartamentos();
         Toast.makeText(getApplicationContext(),"Apartment list",Toast.LENGTH_SHORT).show();

@@ -35,6 +35,7 @@ public class InformationFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         dbHelper =new DbHelper(getActivity().getBaseContext());
 
         view=inflater.inflate(R.layout.fragment_information, container, false);
