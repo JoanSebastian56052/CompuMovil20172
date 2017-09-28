@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         InformationFragment fragment = new InformationFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container,fragment);
+        fragmentTransaction.replace(R.id.fragment_container1,fragment);
         fragmentTransaction.commit();
 
         // Set behavior of Navigation drawer
@@ -74,24 +74,31 @@ public class MainActivity extends AppCompatActivity {
                                 //Toast.makeText(getApplicationContext(),"Info Selected",Toast.LENGTH_SHORT).show();
                                 InformationFragment fragment = new InformationFragment();
                                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.fragment_container,fragment);
+                                fragmentTransaction.replace(R.id.fragment_container1,fragment);
                                 fragmentTransaction.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
                             case R.id.about:
                                 AboutFragment fragment2 = new AboutFragment();
                                 FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction2.replace(R.id.fragment_container,fragment2);
+                                fragmentTransaction2.replace(R.id.fragment_container1,fragment2);
                                 fragmentTransaction2.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
                             case R.id.apart:
                                 Toast.makeText(getApplicationContext(),"Apartment list",Toast.LENGTH_SHORT).show();
                                 ApartmentFragment fragment3 = new ApartmentFragment();
+<<<<<<< HEAD
                                 AboutFragment fragment23 = new AboutFragment();
                                 FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                                 fragmentTransaction3.replace(R.id.fragment_container,fragment23);
                                 fragmentTransaction3.replace(R.id.fragment_container2,fragment3);
+=======
+                                SearchFragment fragment6 = new SearchFragment();
+                                FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction3.replace(R.id.fragment_container1,fragment3);
+                                fragmentTransaction3.replace(R.id.fragment_container2,fragment6);
+>>>>>>> 2cae5c71cf4ef30def747715c0080a347962982b
                                 fragmentTransaction3.commit();
                                 //fab.setVisibility(View.VISIBLE);
                                 return true;
@@ -99,14 +106,14 @@ public class MainActivity extends AppCompatActivity {
                                 //Toast.makeText(getApplicationContext(),"Edit Selected",Toast.LENGTH_SHORT).show();
                                 EditFragment fragment1 = new EditFragment();
                                 FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction1.replace(R.id.fragment_container,fragment1);
+                                fragmentTransaction1.replace(R.id.fragment_container1,fragment1);
                                 fragmentTransaction1.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
                             case R.id.notification:
                                 NotificationFragment fragment4 = new NotificationFragment();
                                 FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction4.replace(R.id.fragment_container,fragment4);
+                                fragmentTransaction4.replace(R.id.fragment_container1,fragment4);
                                 fragmentTransaction4.commit();
                                 //fab.setVisibility(View.INVISIBLE);
                                 return true;
@@ -157,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void AgregarApartamento(View v){
         FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction5.replace(R.id.fragment_container,add);
+        fragmentTransaction5.replace(R.id.fragment_container1,add);
         fragmentTransaction5.commit();
     }
 
@@ -174,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Apartment list",Toast.LENGTH_SHORT).show();
         ApartmentFragment fragment3 = new ApartmentFragment();
         FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction3.replace(R.id.fragment_container,fragment3);
+        fragmentTransaction3.replace(R.id.fragment_container1,fragment3);
         fragmentTransaction3.commit();
         //fab.setVisibility(View.VISIBLE);
     }

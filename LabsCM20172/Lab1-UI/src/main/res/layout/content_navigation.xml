@@ -12,6 +12,7 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_navigation_drawer">
     <RelativeLayout
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fragment_container">
@@ -44,4 +45,17 @@
             android:visibility="gone"
             style="@style/Base.Widget.AppCompat.Button.Colored" />
     </LinearLayout>
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_container1">
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_container2">
+
+    </RelativeLayout>
+>>>>>>> 2cae5c71cf4ef30def747715c0080a347962982b
 </RelativeLayout>
