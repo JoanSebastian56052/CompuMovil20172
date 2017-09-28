@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,10 +39,12 @@ public class ApartmentFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         dbHelper =new DbHelper(getActivity().getBaseContext());
-        view= inflater.inflate(R.layout.fragment_apartment,container,false);
+        view = inflater.inflate(R.layout.fragment_apartment,container,false);
+        buscar = (EditText) view.findViewById(R.id.searchApartment);
         btnBuscar = (Button)view.findViewById(R.id.btnSearch);
-        btnBuscar.setVisibility(View.VISIBLE);
-        buscar.setVisibility(View.VISIBLE);
+        //btnBuscar.setVisibility(View.VISIBLE);
+        //buscar.setVisibility(View.VISIBLE);
+
         ListarApartamentos();
         return super.onCreateView(inflater, container, savedInstanceState);
     }

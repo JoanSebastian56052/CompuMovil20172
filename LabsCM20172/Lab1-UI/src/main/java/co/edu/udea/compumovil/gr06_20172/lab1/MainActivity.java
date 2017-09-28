@@ -88,8 +88,10 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.apart:
                                 Toast.makeText(getApplicationContext(),"Apartment list",Toast.LENGTH_SHORT).show();
                                 ApartmentFragment fragment3 = new ApartmentFragment();
+                                AboutFragment fragment23 = new AboutFragment();
                                 FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
-                                fragmentTransaction3.replace(R.id.fragment_container,fragment3);
+                                fragmentTransaction3.replace(R.id.fragment_container,fragment23);
+                                fragmentTransaction3.replace(R.id.fragment_container2,fragment3);
                                 fragmentTransaction3.commit();
                                 //fab.setVisibility(View.VISIBLE);
                                 return true;
